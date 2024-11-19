@@ -1,20 +1,24 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import AntDesign from '@expo/vector-icons/AntDesign';
+import Feather from '@expo/vector-icons/Feather';
 
-export default function App() {
+import HomeMenu from './src/components/HomeMenu';
+import Login from './src/screens/Login';
+import Register from './src/screens/Register';
+
+const Stack = createNativeStackNavigator()
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Register" component={Register} options={{ stackBarIcon: () => <Ionicons name="create-outline" size={24} color="black" /> }} />
+        <Stack.Screen name="Login" component={Login} options={{ stackBarIcon: () => <Feather name="log-in" size={24} color="black" /> }} />
+        <Stack.Screen name="HomeMenu" component={HomeMenu} options={{ stackBarIcon: () => <AntDesign name="home" size={24} color="black" /> }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
